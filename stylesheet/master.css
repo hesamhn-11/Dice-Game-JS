@@ -1,0 +1,109 @@
+@import "tailwindcss";
+@layer base{
+    body{
+        overflow: hidden;
+    }
+    main{
+        background-image: url(../Dice-Board-Game-Desktop-Wallpaper-88877.jpg);
+        background-position: center;
+        background-size: cover;
+        background-position: top;
+        width: 100%;
+        height: 100vh;
+        font-family: "Work Sans", sans-serif;
+        position: relative;
+    }
+    .inp{
+        @apply bg-white w-[180px] h-7 
+    }
+    .label{
+        @apply text-white 
+    }
+}
+@layer components{
+    /* ۱. کانتینر اصلی برای ایجاد عمق */
+.dice-container {
+  perspective: 1000px;
+}
+.playA{
+  opacity: 0;
+  transform: rotateY('360deg');
+}
+
+/* ۲. بدنه اصلی تاس */
+.dice {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  transform-style: preserve-3d; /* این خط باعث می‌شود لایه‌ها سه‌بعدی بمانند */
+  transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ۳. استایل وجه‌ها */
+.face {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  display: grid; /* برای چیدن نقطه‌ها */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "a . b"
+    "c d e"
+    "f . g";
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* ۴. استایل نقطه‌ها */
+.dot {
+  width: 16px;
+  height: 16px;
+  background-color: #333;
+  border-radius: 50%;
+  align-self: center;
+  justify-self: center;
+}
+
+/* ۵. چیدمان سه‌بعدی وجه‌ها (بسیار مهم) */
+.front  { transform: rotateY(0deg) translateZ(50px); }
+.back   { transform: rotateY(180deg) translateZ(50px); }
+.right  { transform: rotateY(90deg) translateZ(50px); }
+.left   { transform: rotateY(-90deg) translateZ(50px); }
+.top    { transform: rotateX(90deg) translateZ(50px); }
+.bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+/* ۶. تنظیم جایگاه نقطه‌ها در گرید (مطابق با HTML شما) */
+.first-face .dot { grid-area: d; } /* وجه ۱: مرکز */
+
+.second-face .dot:nth-child(1) { grid-area: b; } /* وجه ۲: گوشه بالا راست */
+.second-face .dot:nth-child(2) { grid-area: f; } /* وجه ۲: گوشه پایین چپ */
+
+.third-face .dot:nth-child(1) { grid-area: b; } /* وجه ۳ */
+.third-face .dot:nth-child(2) { grid-area: d; }
+.third-face .dot:nth-child(3) { grid-area: f; }
+
+.fourth-face .dot:nth-child(1) { grid-area: a; } /* وجه ۴ */
+.fourth-face .dot:nth-child(2) { grid-area: b; }
+.fourth-face .dot:nth-child(3) { grid-area: f; }
+.fourth-face .dot:nth-child(4) { grid-area: g; }
+
+.fifth-face .dot:nth-child(1) { grid-area: a; } /* وجه ۵ */
+.fifth-face .dot:nth-child(2) { grid-area: b; }
+.fifth-face .dot:nth-child(3) { grid-area: d; }
+.fifth-face .dot:nth-child(4) { grid-area: f; }
+.fifth-face .dot:nth-child(5) { grid-area: g; }
+
+.sixth-face .dot:nth-child(1) { grid-area: a; } /* وجه ۶ */
+.sixth-face .dot:nth-child(2) { grid-area: b; }
+.sixth-face .dot:nth-child(3) { grid-area: c; }
+.sixth-face .dot:nth-child(4) { grid-area: e; }
+.sixth-face .dot:nth-child(5) { grid-area: f; }
+.sixth-face .dot:nth-child(6) { grid-area: g; }
+}
+
+

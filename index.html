@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice Game!</title>
+    <link rel="stylesheet" href="stylesheet/output.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <main>
+      <!-- palyer name// -->
+      <div
+        class="player relative flex flex-wrap lg:w-[200px] w-[250px] h-[25%] lg:h-max justify-center  items-center gap-1 lg:left-[15%] left-[21.5%] lg:top-[18%] top-[20%] lg:bg-white/10 bg-gray-600/65 py-7 duration-2000 rounded-[5px] scale-[1.7]"
+      >
+        <h1 class="text-white w-full text-center  text-[30px]">
+          Dice Game
+        </h1>
+        <label for="" class="label mr-2.5">Player 1 :</label>
+        <input type="text" class="inp" />
+        <label for="" class="label mr-2.5">Player 2 :</label>
+        <input type="text" class="inp" />
+        <div>
+          <button
+            class="bg-white text-black p-2 rounded-[5px] mt-7 hover:scale-105 cursor-pointer duration-500 hover:bg-gray-500/50 hover:text-white"
+            id="btn"
+          >
+            Start the game!
+          </button>
+          <i
+            class="bi bi-info-circle-fill text-white text-[25px] ml-2.5 hover:text-[28px] duration-300 cursor-pointer"
+            id="info"
+          ></i>
+        </div>
+      </div>
+      <!-- rules// -->
+      <div
+        class="rules lg:w-min lg:h-min h-[20%] w-[95%] absolute lg:right-[15%] lg:top-[25%] right-[1%] top-[30%] rounded-[5px] bg-white hidden flex-wrap justify-center p-[15px]"
+        id="rules"
+      >
+        <span class="absolute right-[5%] top-[5%] cursor-pointer" id="close"
+          ><i class="bi bi-x-circle-fill lg:text-[25px]"></i
+        ></span>
+        <h1 class="lg:text-[35px] text-[20px]">Dice game Rules!</h1>
+        <pre class="lg:text-left text-[11px] text-left ml-2.5 lg:text-[15px]">
+
+1- Enter player names and start playing.
+2- System compare between numbers each round and gives winner +1 score. 
+3- In the end player who wins more rounds is the winner.
+4- If total wins become equal then it is a draw!
+
+*Dice numbers are totally random!
+        </pre>
+      </div>
+      <!-- rules// -->
+      <!-- end player name// -->
+      <!-- game play -->
+      <div
+        class="gamePlay lg:w-[28%] w-[95%] h-[70%] lg:h-[65%] relative lg:top-[5%] top-[2%] rounded-[10px] lg:left-[7%] left-[3%] lg:bg-white/10 bg-gray-600/65 flex-wrap opacity-0  duration-900 hidden justify-center"
+      >
+        <div
+          id="player1"
+          class="w-1/2 h-min text-center capitalize text-[35px] text-white mt-2 flex flex-wrap justify-center"
+        >
+          <h2 class="w-full">hesam</h2>
+          <ul id="player1S" class="mt-1 *:mt-3 *:text-[25px]"></ul>
+        </div>
+        <div
+          id="player2"
+          class="w-1/2 h-min text-center capitalize text-[35px] text-white mt-2 flex flex-wrap justify-center"
+        >
+          <h2 class="w-full text-center">hasan</h2>
+          <ul id="player2S" class="mt-1 *:mt-3 *:text-[25px]"></ul>
+        </div>
+        <button
+          class="bg-white text-black w-[100px] h-[70px] rounded-[6px] absolute bottom-[15%] text-center text-[25px] hover:scale-110 hover:bg-gray-600 duration-500 cursor-pointer hover:text-white"
+          id="playBtn"
+        >
+          Play!
+        </button>
+        <span class="absolute bottom-0 cursor-pointer hidden" id="again"
+          ><i class="bi bi-arrow-counterclockwise text-white text-[40px]"></i
+        ></span>
+        <h2
+          id="result1"
+          class="text-white absolute bottom-[2%] left-[22%] text-[50px]"
+        >
+          0
+        </h2>
+        <h2
+          id="result2"
+          class="text-white absolute bottom-[2%] right-[20%] text-[50px]"
+        >
+          0
+        </h2>
+      </div>
+      <div
+        class="winner absolute lg:bg-white/90 bg-white lg:w-[30%] lg:h-[40%] w-[70%] h-[35%] rounded-[10px]  lg:right-[20%] right-[13%] lg:top-[25%] top-[15%] hidden justify-center content-evenly flex-wrap"
+      >
+        <h3 class="w-full text-center capitalize text-[60px]">hesam</h3>
+        <img src="Subject.png" alt="" class="w-[50%] h-[50%]" />
+      </div>
+      <div
+        class="draw absolute lg:bg-white/90 bg-white lg:w-[30%] lg:h-[40%] w-[70%] h-[30%] rounded-[10px] right-[12%] lg:right-[20%] top-[20%]  hidden justify-center content-evenly flex-wrap "
+      >
+        <h3 class="w-full text-center text-[60px]">It's a Draw!</h3>
+        <img src="Subject 2.png" alt="" class="w-[50%] lg:h-[40%] h-[30%] mb-3" />
+      </div>
+      <!-- end game play -->
+      <!-- dice face// -->
+      <div
+        class="dice-container absolute lg:left-[18%] lg:bottom-[7%] left-[40%] bottom-[4%] lg:scale-110 scale-140 duration-700"
+      >
+        <div class="dice duration-1500" id="dice">
+          <div class="face front first-face">
+            <span class="dot"></span>
+          </div>
+
+          <div class="face back sixth-face">
+            <span class="dot"></span><span class="dot"></span>
+            <span class="dot"></span><span class="dot"></span>
+            <span class="dot"></span><span class="dot"></span>
+          </div>
+
+          <div class="face right second-face">
+            <span class="dot"></span><span class="dot"></span>
+          </div>
+
+          <div class="face left fifth-face">
+            <span class="dot"></span><span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span><span class="dot"></span>
+          </div>
+
+          <div class="face top third-face">
+            <span class="dot"></span><span class="dot"></span
+            ><span class="dot"></span>
+          </div>
+
+          <div class="face bottom fourth-face">
+            <span class="dot"></span><span class="dot"></span>
+            <span class="dot"></span><span class="dot"></span>
+          </div>
+        </div>
+      </div>
+      <!-- end dice face -->
+    </main>
+  </body>
+  <script>
+    let inp = document.querySelectorAll(".inp");
+    const btn = document.querySelector("#btn");
+    const _player = document.querySelector(".player");
+    const playBtn = document.querySelector("#playBtn");
+    let player1 = document.querySelector("#player1>h2");
+    let player2 = document.querySelector("#player2>h2");
+    const gamePlay = document.querySelector(".gamePlay");
+    const sc1 = document.querySelector("#player1S");
+    const sc2 = document.querySelector("#player2S");
+    const dice = document.querySelector("#dice");
+    const res1 = document.querySelector("#result1");
+    const res2 = document.querySelector("#result2");
+    const info = document.querySelector("#info");
+    const _rules = document.querySelector("#rules");
+    const _close = document.querySelector("#close");
+    const _repeat = document.querySelector("#again");
+    const winner = document.querySelector(".winner");
+    const _draw = document.querySelector(".draw");
+    info.addEventListener("click", () => {
+      _rules.style.display = "flex";
+    });
+    _close.addEventListener("click", () => {
+      _rules.style.display = "none";
+    });
+    _repeat.addEventListener("click", () => location.reload());
+    btn.addEventListener("click", (e) => {
+      if (inp[0].value == "" || inp[1].value == "") {
+        alert("Enter your name!");
+      } else {
+        _rules.style.display = "none";
+        _player.classList.add("playA");
+        setTimeout(() => {
+          _player.style.display = "none";
+        }, 1700);
+        gamePlay.style.display = "flex";
+        setTimeout(() => {
+          gamePlay.style.opacity = "1";
+        }, 2000);
+        player1.innerHTML = inp[0].value;
+        player2.innerHTML = inp[1].value;
+      }
+    });
+    function rand() {
+      let _rand = Math.floor(Math.random() * 6 + 1);
+      window._rand = _rand;
+      return _rand;
+    }
+    let flag = 0;
+    let totalWin1 = 0;
+    let totalWin2 = 0;
+    playBtn.addEventListener("click", () => {
+      if (flag < 10) {
+        rand();
+        rolldice();
+        if (flag % 2 === 0) {
+          setTimeout(() => {
+            let x = document.createElement("li");
+            x.innerHTML = _rand;
+            sc1.appendChild(x);
+            let score1 = x.innerHTML;
+            window.score1 = score1;
+          }, 2500);
+        } else if (flag % 2 === 1) {
+          setTimeout(() => {
+            let y = document.createElement("li");
+            y.innerHTML = _rand;
+            sc2.appendChild(y);
+            let s1 = Number(window.score1);
+            let s2 = Number(_rand);
+            if (s1 > s2) {
+              totalWin1 += 1;
+              res1.innerHTML = totalWin1;
+            } else if (s2 > s1) {
+              totalWin2 += 1;
+              res2.innerHTML = totalWin2;
+            }
+            if (flag == 10) {
+              _repeat.style.display = "block";
+              setTimeout(() => {
+                if (totalWin1 > totalWin2) {
+                  winner.children[0].innerHTML = inp[0].value;
+                  winner.style.display = "flex";
+                } else if (totalWin2 > totalWin1) {
+                  winner.children[0].innerHTML = inp[1].value;
+                  winner.style.display = "flex";
+                } else {
+                  _draw.style.display = "flex";
+                }
+              }, 500);
+            }
+          }, 2500);
+        }
+      }
+      flag++;
+    });
+    function rolldice() {
+      dice.style.transform = "rotateX(3600deg)rotateY(3600deg)";
+      setTimeout(() => {
+        switch (_rand) {
+          case 1:
+            dice.style.transform = "rotateX(0deg) rotateY(0deg)";
+            break;
+          case 2:
+            dice.style.transform = "rotateY(-90deg)";
+            break;
+          case 3:
+            dice.style.transform = "rotateX(-90deg)";
+            break;
+          case 4:
+            dice.style.transform = "rotateX(90deg)";
+            break;
+          case 5:
+            dice.style.transform = " rotateY(90deg)";
+            break;
+          case 6:
+            dice.style.transform = "rotateY(180deg)";
+            break;
+        }
+      }, 500);
+    }
+  </script>
+</html>
